@@ -84,7 +84,10 @@ function AutoComplete<T extends object = any>({
 
   useEffect(() => {
     if (value !== undefined) {
-      setInputValue(typeof value === 'string' ? value : getLabel?.(value as T));
+      const newInputValue = typeof value === 'string' ? value : getLabel?.(value as T);
+      setInputValue(newInputValue);
+      const filtered = options?.filter(option => getLabel?.(option)?.toLowerCase().includes(String(newInputValue).toLowerCase()));
+      setFilteredOptions(filtered);
     }
   }, [value]);
 
@@ -110,7 +113,6 @@ function AutoComplete<T extends object = any>({
       <Dropdown
         style={{
           marginTop: '10px',
-
           maxHeight: '200px',
         }}
         anchorEl={anchorEl}
