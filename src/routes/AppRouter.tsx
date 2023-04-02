@@ -3,7 +3,7 @@ import { useRoutes } from 'react-router-dom';
 
 export default function AppRouter() {
   const appRoutes = {
-    HOME: '/home',
+    HOME: '/',
   };
   return useRoutes([
     {
